@@ -7,7 +7,7 @@ describe Player do
     expect(player.name).to eq "Obama"
   end
   it "can receive damage" do
-    expect(player).to respond_to(:receive_damage)
+    expect{player.receive_damage}.to change{player.hitpoints}.by -10
   end
   it "can return its HP" do
     expect(player).to respond_to(:hitpoints)
