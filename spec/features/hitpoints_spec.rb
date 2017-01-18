@@ -1,10 +1,10 @@
 feature "hitpoints" do
   scenario "can see player 1 hitpoints" do
     sign_in_and_play
-    expect(page).to have_selector("#p1_hp", text: "HP")
+    expect(page).to have_selector("#p1_hp", text: "100 HP")
   end
   scenario "can see player 2 hitpoints" do
     sign_in_and_play
-    expect(page).to have_selector("#p2_hp", text: "HP")
+    expect(page).to have_selector("#p2_hp", text: "100 HP")
   end
 end
