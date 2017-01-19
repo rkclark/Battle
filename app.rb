@@ -12,6 +12,12 @@ class Battle < Sinatra::Base
     erb :index
   end
 
+  before do
+    pass if request.path_info.include?("/play|attack/")
+    @game = Game.game_instance
+    @message_log = MessageLog.message_log_instance
+  end
+
   post '/names' do
     player_1 = Player.new(name: params[:p1_name])
     player_2 = Player.new(name: params[:p2_name])
@@ -22,14 +28,10 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
-    @game = Game.game_instance
-    @message_log = MessageLog.message_log_instance
     erb :play
   end
 
   get '/attack' do
-    @game = Game.game_instance
-    @message_log = MessageLog.message_log_instance
     Attack.attack_instance.run_attack
     erb :play
   end
