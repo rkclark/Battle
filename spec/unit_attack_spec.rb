@@ -5,7 +5,8 @@ describe Attack do
   let(:player_1) { instance_double("Player") }
   let(:player_2) { instance_double("Player") }
   let(:game) { instance_double("Game") }
-  subject(:attack) { described_class.new(game: game) }
+  let(:message_log) {instance_double("MessageLog")}
+  subject(:attack) { described_class.new(game: game, message_log: message_log) }
 
 
   describe "#run_attack" do
@@ -14,7 +15,7 @@ describe Attack do
       allow(player_2).to receive(:name) { "Trump" }
       allow(game).to receive(:inactive_player) { player_2 }
       allow(game).to receive(:active_player) { player_1 }
-      allow(game).to receive(:add_message)
+      allow(message_log).to receive(:add_message)
       allow(game).to receive(:switch_turn)
       allow(player_2).to receive(:receive_damage)
       expect{attack.run_attack}.not_to raise_error
