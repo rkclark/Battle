@@ -1,9 +1,9 @@
-<div class="">
+<div id="player_1" class="<%=@game.active_player == @game.player_1 ? 'active_player' : ''%>">
   <h1><%=@game.player_1.name%></h1>
   <p id="p1_hp"><%=@game.player_1.hitpoints%> HP</p>
 </div>
 
-<div class="">
+<div id="player_2" class="<%=@game.active_player == @game.player_2 ? 'active_player' : ''%>">
   <h1><%=@game.player_2.name%></h1>
   <p id="p2_hp"><%=@game.player_2.hitpoints%> HP</p>
 </div>

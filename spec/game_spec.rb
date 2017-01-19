@@ -13,7 +13,7 @@ describe Game do
   describe "#attack" do
     it "calls reduce_damage on target player" do
       allow(player_2).to receive(:receive_damage)
-      expect{game.attack(player_2)}.not_to raise_error
+      expect{game.attack}.not_to raise_error
     end
   end
 
