@@ -1,17 +1,20 @@
 <div class="">
-  <h1><%=@player_1.name%></h1>
-  <p id="p1_hp"><%=@player_1.hitpoints%> HP</p>
+  <h1><%=@game.player_1.name%></h1>
+  <p id="p1_hp"><%=@game.player_1.hitpoints%> HP</p>
 </div>
 
 <div class="">
-  <h1><%=@player_2.name%></h1>
-  <p id="p2_hp"><%=@player_2.hitpoints%> HP</p>
+  <h1><%=@game.player_2.name%></h1>
+  <p id="p2_hp"><%=@game.player_2.hitpoints%> HP</p>
 </div>
 
 <div class="">
   <a href="/attack" id="attack_button">Attack</a>
 </div>
 
-<div class="">
-  <p id="game_messages"><%= @new_message %></p>
+<div id="game_messages" class="">
+  <ul>
+    <%= @game.messages.map { |message| "<li>#{message}</li>" }.join %>
+  </ul>
+
 </div>

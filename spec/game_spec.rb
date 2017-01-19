@@ -6,6 +6,10 @@ describe Game do
   let(:player_2) { instance_double("Player") }
   subject(:game) { described_class.new(player_1: player_1, player_2: player_2) }
 
+  before(:each) do
+    allow(player_1).to receive(:name) { "Obama" }
+    allow(player_2).to receive(:name) { "Trump" }
+  end
   describe "#attack" do
     it "calls reduce_damage on target player" do
       allow(player_2).to receive(:receive_damage)
@@ -25,5 +29,10 @@ describe Game do
     end
   end
 
+  describe "#messages" do
+    it "contains player1 vs player2 message" do
+      expect(game.messages).to include( "#{player_1.name} and #{player_2.name} entered the game")
+    end
+  end
 
 end
