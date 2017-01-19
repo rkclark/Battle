@@ -16,7 +16,7 @@ describe Attack do
       allow(game).to receive(:inactive_player) { player_2 }
       allow(game).to receive(:active_player) { player_1 }
       allow(message_log).to receive(:add_message)
-      allow(game).to receive(:switch_turn)
+      allow(game).to receive(:decide_next_event)
       allow(player_2).to receive(:receive_damage)
       expect{attack.run_attack}.not_to raise_error
     end

@@ -8,7 +8,7 @@ class Attack
   def run_attack
     game.inactive_player.receive_damage
     message_log.add_message("#{game.active_player.name} attacked #{game.inactive_player.name}")
-    game.switch_turn
+    game.decide_next_event
   end
 
   private

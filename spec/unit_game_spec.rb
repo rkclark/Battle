@@ -10,6 +10,8 @@ describe Game do
   before(:each) do
     allow(player_1).to receive(:name) { "Obama" }
     allow(player_2).to receive(:name) { "Trump" }
+    allow(player_1).to receive(:hitpoints) { 100 }
+    allow(player_2).to receive(:hitpoints) { 100 }
     allow(message_log).to receive(:add_message)
     allow(message_log).to receive(:messages){["#{player_1.name} and #{player_2.name} entered the game"]}
   end
@@ -26,9 +28,22 @@ describe Game do
     end
   end
 
-  describe "#messages" do
-    it "contains player1 vs player2 message" do
+  describe "initialization" do
+    it "message log contains player1 vs player2 message" do
       expect(game.message_log.messages).to include( "#{player_1.name} and #{player_2.name} entered the game")
+    end
+  end
+
+  describe "#decide_next_event?" do
+    it "adds two messages to message log when game won" do
+      allow(player_1).to receive(:hitpoints) { 0 }
+      allow(message_log).to receive(:messages){["#{player_1.name} reaches 0 HP!", "#{player_2.name} wins!" ]}
+      game.decide_next_event
+      expect(game.message_log.messages).to include( "#{player_1.name} reaches 0 HP!" )
+      expect(game.message_log.messages).to include( "#{player_2.name} wins!" )
+    end
+    it "switches turns if game not won" do
+      expect{game.decide_next_event}.to change { game.active_player }
     end
   end
 
