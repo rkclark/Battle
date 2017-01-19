@@ -8,7 +8,7 @@ class Game
    @player_1 = player_1
    @player_2 = player_2
    @message_log = message_log
-   @active_player = @player_1
+   @active_player = player_1
    @message_log.add_message("#{player_1.name} and #{player_2.name} entered the game")
    self.class.game_instance = self
  end

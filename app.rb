@@ -17,7 +17,7 @@ class Battle < Sinatra::Base
     player_2 = Player.new(name: params[:p2_name])
     @message_log = MessageLog.new
     @game = Game.new(player_1: player_1, player_2: player_2, message_log: MessageLog.message_log_instance)
-    $attack = Attack.new(game: Game.game_instance, message_log: MessageLog.message_log_instance)
+    @attack = Attack.new(game: Game.game_instance, message_log: MessageLog.message_log_instance)
     redirect '/play'
   end
 
@@ -30,7 +30,7 @@ class Battle < Sinatra::Base
   get '/attack' do
     @game = Game.game_instance
     @message_log = MessageLog.message_log_instance
-    $attack.run_attack
+    Attack.attack_instance.run_attack
     erb :play
   end
 end
