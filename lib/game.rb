@@ -41,7 +41,7 @@ class Game
   end
 
   def game_won?
-    (player_1.hitpoints == 0 || player_2.hitpoints == 0) ? true : false
+    (player_1.hitpoints <= 0 || player_2.hitpoints <= 0) ? true : false
   end
 
 end
