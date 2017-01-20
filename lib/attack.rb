@@ -2,9 +2,10 @@ class Attack
 
   @attack_instance = nil
 
-  def initialize(game:, message_log:)
+  def initialize(game:, message_log:, randomiser_module:Randomiser)
     @game = game
     @message_log = message_log
+    @randomiser = randomiser_module
     self.class.attack_instance = self
   end
 
@@ -24,5 +25,5 @@ class Attack
 
   private
 
-  attr_reader :game, :message_log
+  attr_reader :game, :message_log, :randomiser
 end
