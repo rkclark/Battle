@@ -9,4 +9,11 @@ feature "attack" do
     click_link('attack_button')
     expect("#p2_hp").not_to have_text("60 HP")
   end
+  scenario "can click on buttons to Attack, Paralyse, Sleep, Poison and Heal" do
+    sign_in_and_play
+    expect(page.find("a#paralyse-button")).not_to be_falsey
+    expect(page.find("a#sleep-button")).not_to be_falsey
+    expect(page.find("a#poison-button")).not_to be_falsey
+    expect(page.find("a#heal-button")).not_to be_falsey
+  end
 end
