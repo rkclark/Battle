@@ -11,9 +11,7 @@ class Attack
   end
 
   def run_attack(type)
-    damage = random_damage
-    game.inactive_player.receive_damage(damage)
-    message_log.add_message("#{game.active_player.name} attacked #{game.inactive_player.name} for #{damage} HP!")
+    route_attack(type)
     game.decide_next_event
   end
 
@@ -26,6 +24,32 @@ class Attack
   end
 
   private
+
+  def add_message(message)
+    message_log.add_message(message)
+  end
+
+  def route_attack(type)
+    case type
+      when 'normal'
+        p 'NORMAL ATTACK'
+        normal_attack
+      when 'paralyse'
+        paralyse_attack
+      when 'sleep'
+        sleep_attack
+      when 'poison'
+        poison_attack
+      when 'heal'
+        heal_attack
+    end
+  end
+
+  def normal_attack
+    damage = random_damage
+    game.inactive_player.receive_damage(damage)
+    add_message("#{game.active_player.name} attacked #{game.inactive_player.name} for #{damage} HP!")
+  end
 
   def random_damage
     (randomiser.randomise * ATTACK_MODIFIER).to_i + 1

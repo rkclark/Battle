@@ -22,10 +22,14 @@ describe Attack do
     it "accepts an attack type" do
       expect(attack).to respond_to(:run_attack).with(1).argument
     end
-    it "passes randomised attack damage to receive_damage" do
-      srand(1234)
-      attack.run_attack('attack')
-      expect(player_2).to have_received(:receive_damage).with(2)
+    context "normal attack" do
+      it "passes randomised attack damage to receive_damage" do
+        srand(1234)
+        attack.run_attack('normal')
+        expect(player_2).to have_received(:receive_damage).with(2)
+      end
     end
+
   end
+
 end

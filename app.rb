@@ -20,6 +20,7 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
+    p params
     player_1 = Player.new(name: params[:p1_name])
     player_2 = params[:p2_name].empty? ? Player.new(name:"Computer", human: false) : Player.new(name: params[:p2_name], human: true)
     @message_log = MessageLog.new
@@ -33,6 +34,7 @@ class Battle < Sinatra::Base
   end
 
   get '/attack' do
+    p params
     Attack.attack_instance.run_attack(params[:attack])
     Attack.attack_instance.run_attack(params[:attack]) unless @game.active_player.human?
     erb :play
