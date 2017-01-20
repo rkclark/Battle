@@ -19,9 +19,12 @@ describe Attack do
       allow(game).to receive(:decide_next_event)
       allow(player_2).to receive(:receive_damage).with(2)
     end
+    it "accepts an attack type" do
+      expect(attack).to respond_to(:run_attack).with(1).argument
+    end
     it "passes randomised attack damage to receive_damage" do
       srand(1234)
-      attack.run_attack
+      attack.run_attack('attack')
       expect(player_2).to have_received(:receive_damage).with(2)
     end
   end

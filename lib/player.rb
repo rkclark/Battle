@@ -9,6 +9,9 @@ class Player
     @name = name
     @hitpoints = hitpoints
     @human = human
+    @paralysed = false
+    @sleeping = false
+    @poisoned = false
   end
 
   def receive_damage(damage)
@@ -17,6 +20,18 @@ class Player
 
   def human?
     @human
+  end
+
+  def paralysed?
+    @paralysed
+  end
+
+  def sleeping?
+    @sleeping
+  end
+
+  def poisoned?
+    @poisoned
   end
 
   private

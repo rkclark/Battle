@@ -9,16 +9,15 @@
 </div>
 
 <div class="">
-  <a href="/attack" id="attack_button">Attack</a>
-  <a href="/attack" id="paralyse-button">Paralyse</a>
-  <a href="/attack" id="sleep-button">Sleep</a>
-  <a href="/attack" id="poison-button">Poison</a>
-  <a href="/attack" id="heal-button">Heal</a>
+  <a href="/attack?attack='attack'" id="attack_button">Attack</a>
+  <a href="/attack?attack='paralyse'" id="paralyse-button">Paralyse</a>
+  <a href="/attack?attack='sleep'" id="sleep-button">Sleep</a>
+  <a href="/attack?attack='poison'" id="poison-button">Poison</a>
+  <a href="/attack?attack='heal'" id="heal-button">Heal</a>
 </div>
 
 <div id="game_messages" class="">
   <ul>
     <%= @message_log.messages.reverse.map { |message| "<li>#{message}</li>" }.join %>
   </ul>
-
 </div>

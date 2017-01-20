@@ -33,8 +33,8 @@ class Battle < Sinatra::Base
   end
 
   get '/attack' do
-    Attack.attack_instance.run_attack
-    Attack.attack_instance.run_attack unless @game.active_player.human? 
+    Attack.attack_instance.run_attack(params[:attack])
+    Attack.attack_instance.run_attack(params[:attack]) unless @game.active_player.human?
     erb :play
   end
 

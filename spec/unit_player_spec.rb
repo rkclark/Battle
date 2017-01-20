@@ -19,4 +19,9 @@ describe Player do
   it "stores whether it is human or computer controlled"do
     expect(player).to respond_to(:human?)
   end
+  it "has no true status effects at start of game" do
+    expect(player.paralysed?).to be false
+    expect(player.sleeping?).to be false
+    expect(player.poisoned?).to be false
+  end
 end

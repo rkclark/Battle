@@ -10,7 +10,7 @@ class Attack
     self.class.attack_instance = self
   end
 
-  def run_attack
+  def run_attack(type)
     damage = random_damage
     game.inactive_player.receive_damage(damage)
     message_log.add_message("#{game.active_player.name} attacked #{game.inactive_player.name} for #{damage} HP!")
