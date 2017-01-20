@@ -11,8 +11,9 @@ class Attack
   end
 
   def run_attack
-    game.inactive_player.receive_damage(random_damage)
-    message_log.add_message("#{game.active_player.name} attacked #{game.inactive_player.name}")
+    damage = random_damage
+    game.inactive_player.receive_damage(damage)
+    message_log.add_message("#{game.active_player.name} attacked #{game.inactive_player.name} for #{damage} HP!")
     game.decide_next_event
   end
 
