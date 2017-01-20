@@ -16,4 +16,7 @@ describe Player do
   it "can return its HP" do
     expect(player).to respond_to(:hitpoints)
   end
+  it "stores whether it is human or computer controlled"do
+    expect(player).to respond_to(:human?)
+  end
 end

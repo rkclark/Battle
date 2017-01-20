@@ -7,7 +7,6 @@ require './lib/randomiser.rb'
 
 class Battle < Sinatra::Base
   enable :sessions
-  #set :server, 'webrick'
   set :session_secret, "session_secret"
 
   get '/' do
@@ -22,7 +21,7 @@ class Battle < Sinatra::Base
 
   post '/names' do
     player_1 = Player.new(name: params[:p1_name])
-    player_2 = Player.new(name: params[:p2_name])
+    player_2 = params[:p2_name].empty? ? Player.new(name:"Computer", human: false) : Player.new(name: params[:p2_name], human: true)
     @message_log = MessageLog.new
     @game = Game.new(player_1: player_1, player_2: player_2, message_log: MessageLog.message_log_instance)
     @attack = Attack.new(game: Game.game_instance, message_log: MessageLog.message_log_instance, randomiser_module: Randomiser)
@@ -35,6 +34,7 @@ class Battle < Sinatra::Base
 
   get '/attack' do
     Attack.attack_instance.run_attack
+    Attack.attack_instance.run_attack unless @game.active_player.human? 
     erb :play
   end
 
