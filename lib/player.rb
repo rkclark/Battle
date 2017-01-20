@@ -34,6 +34,18 @@ class Player
     @poisoned
   end
 
+  def toggle_paralysed
+    paralysed? ? @paralysed = false : @paralysed = true
+  end
+
+  def toggle_sleeping
+    sleeping? ? @sleeping = false : @sleeping = true
+  end
+
+  def toggle_poisoned
+    poisoned? ? @poisoned = false : @poisoned = true
+  end
+
   private
 
   def damage_breaches_min_hp?(damage)

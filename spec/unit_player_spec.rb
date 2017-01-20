@@ -24,4 +24,12 @@ describe Player do
     expect(player.sleeping?).to be false
     expect(player.poisoned?).to be false
   end
+  it "can toggle all status effects" do
+    player.toggle_paralysed
+    player.toggle_sleeping
+    player.toggle_poisoned
+    expect(player.paralysed?).to be true
+    expect(player.sleeping?).to be true
+    expect(player.poisoned?).to be true
+  end
 end

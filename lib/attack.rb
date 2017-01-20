@@ -1,7 +1,8 @@
 class Attack
 
   @attack_instance = nil
-  ATTACK_MODIFIER = 10
+  NORMAL_ATTACK_MODIFIER = 10
+  PARALYSE_ATTACK_MODIFIER = 5
 
   def initialize(game:, message_log:, randomiser_module:Randomiser)
     @game = game
@@ -32,9 +33,9 @@ class Attack
   def route_attack(type)
     case type
       when 'normal'
-        p 'NORMAL ATTACK'
-        normal_attack
+        normal_attack(NORMAL_ATTACK_MODIFIER, type)
       when 'paralyse'
+        normal_attack(PARALYSE_ATTACK_MODIFIER, type)
         paralyse_attack
       when 'sleep'
         sleep_attack
@@ -45,14 +46,31 @@ class Attack
     end
   end
 
-  def normal_attack
-    damage = random_damage
+  def normal_attack(modifier, type)
+    damage = random_damage(modifier)
     game.inactive_player.receive_damage(damage)
-    add_message("#{game.active_player.name} attacked #{game.inactive_player.name} for #{damage} HP!")
+    add_message("#{game.active_player.name} attacked #{game.inactive_player.name} with #{type.capitalize} Attack for #{damage} HP!")
   end
 
-  def random_damage
-    (randomiser.randomise * ATTACK_MODIFIER).to_i + 1
+  def paralyse_attack
+    if random_boolean
+      player.toggle_paralysed
+      add_message("#{game.inactive_player} was Paralysed!")
+    else
+      add_message("#{game.inactive_player} resisted Paralyse!")
+    end
+  end
+
+  def random_damage(modifier)
+    (random_number * modifier).to_i + 1
+  end
+
+  def random_boolean
+    random_number > 0.5
+  end
+
+  def random_number
+    randomiser.randomise
   end
 
   attr_reader :game, :message_log, :randomiser
