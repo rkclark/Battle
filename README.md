@@ -6,7 +6,7 @@ A project to reinforce the basics of HTTP, response-request mechanisms, Sinatra,
 
 - Clone this repo
 - In the project root, run `bundle install`
-- To run the test, run `rspec`
+- To run the tests, run `rspec`
 - To try the app, run `ruby app.rb` to start the server, then navigate to `http://localhost:4567` in your browser
 
 
